@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> mano grazus titlas :></title>
         <script>
             async function active_button(id, target) {
                 let buttons = document.querySelectorAll("a");
@@ -26,29 +27,123 @@
             }
         </script>
         <style>
+            /* global */
+            * {
+                font-family: sans-serif;
+                font-size: medium;
+            }
             html {
-                background-color:lawngreen;
+                position: relative;
+                min-height: 100%;
+            }
+            body {
+                margin: 0 0 100px;
+                padding: 25px;
+            }
+            ul {
+                list-style-type: disc;
+            }
+            footer {
+                background-color: rgba(21, 21, 20, 0.284);
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 100px;
+                width: 100%;
+                overflow: hidden;
+            } 
+            /* navbar */
+            .navbar {
+                overflow: hidden;
             }
             .navbar-wrapper {
                 display: flex;
+                justify-content: flex-start;
+                list-style-type: none;
+                margin-top: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #161616;
+            }
+            .navbar-item {
+                display: inline-block;
+                margin-right: 10px;
+            }
+            .navbar-item a {
+                display: block;
+                color: goldenrod;
+                text-decoration: none;
+                padding: 8px 16px;
+                font-weight: bold;
+                border-radius: 0px;
+                transition: background-color 0.3s ease;
+            }
+            .navbar-item a:hover {
+                background-color: whitesmoke;
             }
             .navbar-button {
-                background-color: azure;
-                padding: 1%;
-                margin: 1%;
+                color: whitesmoke;
+                border: none;
+                padding: 8px 16px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-weight: bold;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+                cursor: pointer;
+                height: 100%; 
+                width: 120px; 
+                line-height: 95px;
             }
+
             .navbar-button:hover {
-                background-color: rgb(92, 92, 92);
-                padding: 1%;
-                margin: 1%;
+                background-color: #45a049;
+            }
+            /* main */
+            .main-wrapper {
+                max-width: auto;
+                max-height: auto;
+                height: 100%;
             }
             .main-content {
                 display: none
             }
             .main-content.active {
                 display: flex;
+                max-width: auto;
+                max-height: auto;
+                height: 100%;
             }
-
+            /* Projects */
+            .projects-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                list-style: none;
+                gap: 20px;
+                padding-inline-start: 0;
+            }
+            .projects-container {
+                display: flex;
+                flex-direction: column;
+                border: 3px solid #434d57;
+                border-radius: 10px;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 400px;
+                height: 250px;
+                padding: 20px;
+                transition: all 0.3s ease;
+                background-color: transparent;
+            }
+            .projects-container:hover {
+                border-color: rgba(0, 0, 0, 0.953);
+                background-color: rgba(49, 65, 96, 0.04);
+            }
+            
+            /* mobile */
             @media screen and (max-width: 768px) {
                 html {
                     background-color: aquamarine;
@@ -58,28 +153,33 @@
         </style>
     </head>
     <body>
-        <div class="navbar-wrapper">
-            <a id="navbar-button1" class="navbar-button active" onclick="active_button('navbar-button1', 'about-me');">
-                About me</a>
-            <a id="navbar-button2" class="navbar-button" onclick="active_button('navbar-button2', 'my-projects');">
-                My projects</a>
-            <a id="navbar-button3" class="navbar-button" onclick="active_button('navbar-button3', 'contact-me');">
-                Contact me</a>
+
+        <div class="navbar">
+            <ul class="navbar-wrapper">
+                <li class="navbar-item"><a id="navbar-button1" class="navbar-button active" onclick="active_button('navbar-button1', 'about-me');">
+                    About me</a></li>
+                <li class="navbar-item"><a id="navbar-button2" class="navbar-button" onclick="active_button('navbar-button2', 'my-projects');">
+                    My projects</a></li>
+                <li class="navbar-item"><a id="navbar-button3" class="navbar-button" onclick="active_button('navbar-button3', 'contact-me');">
+                    Contact me</a></li>
+            </ul>
         </div>
+
         <div class="main-wrapper">
             <div id="about-me" class="main-content active">
                 <p>About me</p>
             </div>
             <div id="my-projects" class="main-content">
-                <p>My projects</p>
+                <ul class="projects-wrapper">
+                    <li><a class="projects-container" href="https://github.com/kobrius11/CryptocurrencyTracker">CryptocurrencyTracker</a></li>
+                </ul>
             </div>
             <div id="contact-me" class="main-content">
                 <p>Contact me</p>
             </div>
         </div>
-        </body>
     </body>
     <footer>
-
+        <p>This is footer!</p>>
     </footer>
 </html>
