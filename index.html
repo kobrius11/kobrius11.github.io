@@ -5,19 +5,50 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
-            async function active_button(id) {
+            async function active_button(id, target) {
+                let buttons = document.querySelectorAll("a");
+                let targets = document.querySelectorAll("div");
+                buttons.forEach(function(button) {
+                    button.classList.remove("active");
+                });
+                targets.forEach(function(target) {
+                    target.classList.remove("active");
+                });
                 let element = document.getElementById(id);
+                let target_element = document.getElementById(target);
                 if (element.classList.contains("active")) {
-                    element.classList.remove("active"); 
+                    element.classList.remove("active");
+                    target_element.classList.remove("active");
                 } else {
                     element.classList.add("active");
-                }
+                    target_element.classList.add("active");
+                };
             }
         </script>
         <style>
             html {
                 background-color:lawngreen;
             }
+            .navbar-wrapper {
+                display: flex;
+            }
+            .navbar-button {
+                background-color: azure;
+                padding: 1%;
+                margin: 1%;
+            }
+            .navbar-button:hover {
+                background-color: rgb(92, 92, 92);
+                padding: 1%;
+                margin: 1%;
+            }
+            .main-content {
+                display: none
+            }
+            .main-content.active {
+                display: flex;
+            }
+
             @media screen and (max-width: 768px) {
                 html {
                     background-color: aquamarine;
@@ -28,11 +59,25 @@
     </head>
     <body>
         <div class="navbar-wrapper">
-            <a id="navbar-button1" class="navbar-button" onclick="active_button('navbar-button1');">
+            <a id="navbar-button1" class="navbar-button active" onclick="active_button('navbar-button1', 'about-me');">
                 About me</a>
-            <a id="navbar-button2" class="navbar-button" onclick="active_button('navbar-button2');">
+            <a id="navbar-button2" class="navbar-button" onclick="active_button('navbar-button2', 'my-projects');">
+                My projects</a>
+            <a id="navbar-button3" class="navbar-button" onclick="active_button('navbar-button3', 'contact-me');">
                 Contact me</a>
         </div>
+        <div class="main-wrapper">
+            <div id="about-me" class="main-content active">
+                <p>About me</p>
+            </div>
+            <div id="my-projects" class="main-content">
+                <p>My projects</p>
+            </div>
+            <div id="contact-me" class="main-content">
+                <p>Contact me</p>
+            </div>
+        </div>
+        </body>
     </body>
     <footer>
 
