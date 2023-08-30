@@ -4,7 +4,16 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <script>
+            async function active_button(id) {
+                let element = document.getElementById(id);
+                if (element.classList.contains("active")) {
+                    element.classList.remove("active"); 
+                } else {
+                    element.classList.add("active");
+                }
+            }
+        </script>
         <style>
             html {
                 background-color:lawngreen;
@@ -18,7 +27,12 @@
         </style>
     </head>
     <body>
-        <p>Hello World !</p>
+        <div class="navbar-wrapper">
+            <a id="navbar-button" class="navbar-button" onclick="active_button(navbar-button)">
+                About me</a>
+            <a id="navbar-button" class="navbar-button" onclick="active_button(navbar-button)">
+                Contact me</a>
+        </div>
     </body>
     <footer>
 
