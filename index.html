@@ -51,7 +51,8 @@
                 height: 100px;
                 width: 100%;
                 overflow: hidden;
-            } 
+            }
+            
             /* navbar */
             .navbar {
                 overflow: hidden;
@@ -111,8 +112,21 @@
             }
             .main-content.active {
                 display: flex;
-                max-width: auto;
-                max-height: auto;
+                /* flex-direction: column;
+                align-items: center; */
+                height: 100%;
+            }
+            /* About me */
+            #about-me.main-content img {
+                max-width: 300px;
+                max-height: 300px;
+                border-radius: 50%;
+                border-bottom: 3px solid #161616;
+            }
+            #about-me.main-content.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 height: 100%;
             }
             /* Projects */
@@ -167,11 +181,33 @@
 
         <div class="main-wrapper">
             <div id="about-me" class="main-content active">
-                <p>About me</p>
+                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.imgflip.com%2F6y0wb6.jpg&f=1&nofb=1&ipt=3d1d44724264b8c88fcb0c17d229daf9d43c821270cb48899172f544f8ff019b&ipo=images">
+                <h1>Žygimantas Bičkus</h1>
+                <h2>Junior Software Developer</h2>
+                <p>About me blablabla</p>
             </div>
             <div id="my-projects" class="main-content">
                 <ul class="projects-wrapper">
-                    <li><a class="projects-container" href="https://github.com/kobrius11/CryptocurrencyTracker">CryptocurrencyTracker</a></li>
+                    <li><a class="projects-container" href="https://github.com/kobrius11/CryptocurrencyTracker">
+                        <img src="">
+                        <h1>Cryptocurrency tracker</h1>
+                        <p>zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis</p>
+                    </a></li>
+                    <li><a class="projects-container" href="https://github.com/kobrius11/JRZ_project">
+                        <img src="">
+                        <h1>Worker management app</h1>
+                        <p>zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis</p>
+                    </a></li>
+                    <li><a class="projects-container" href="https://github.com/kobrius11/Yellow_bookshop">
+                        <img src="">
+                        <h1>Bookshop app</h1>
+                        <p>zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis</p>
+                    </a></li>
+                    <li><a class="projects-container" href="https://github.com/kobrius11/keliones_apskaita">
+                        <img src="">
+                        <h1>Travel accountant</h1>
+                        <p>zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis zodis</p>
+                    </a></li>
                 </ul>
             </div>
             <div id="contact-me" class="main-content">
