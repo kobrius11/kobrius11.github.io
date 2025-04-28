@@ -1,19 +1,9 @@
 import "@/styles/globals.css";
-import { geistSans, geistMono } from "@/ui/fonts";
+import { geistSans, geistMono } from "@/lib/fonts";
 import { metadata } from "@/app/metadata";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
-
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import Navbar from "@/components/ui/navbar";
 
 export { metadata };
 
@@ -33,11 +23,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavigationMenu>
-          <ModeToggle />
-          <p>Hello World</p>
-          </NavigationMenu>
-          
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>
