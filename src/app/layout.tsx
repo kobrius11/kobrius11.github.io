@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { geistSans, geistMono } from "@/lib/fonts";
 import { metadata } from "@/app/metadata";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/mode-toggle";
 import Navbar from "@/components/ui/navbar";
 
 export { metadata };
