@@ -52,7 +52,6 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Install pnpm
-        if: steps.detect-package-manager.outputs.manager == 'pnpm'
         run: npm install -g pnpm
 
       - name: Setup Pages
