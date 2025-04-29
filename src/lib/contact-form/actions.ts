@@ -44,14 +44,14 @@ export async function createMessage(prevState: State, formData: FormData) {
   const { email, message } = validatedFields.data;
   const date = new Date().toISOString().split("T")[0];
 
-  try {
-    await sql`
-    INSERT INTO messages (email, message, date)
-    VALUES (${email!}, ${message!}, ${date})
-  `;
-  } catch (err) {
-    throw new Error(`Error: ${err}`);
-  }
+  // try {
+  //   await sql`
+  //   INSERT INTO messages (email, message, date)
+  //   VALUES (${email!}, ${message!}, ${date})
+  // `;
+  // } catch (err) {
+  //   throw new Error(`Error: ${err}`);
+  // }
   return {
     message: "Message created succesfully!",
     errors: { email: [], message: [] },
