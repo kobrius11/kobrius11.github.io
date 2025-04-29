@@ -2,9 +2,8 @@ import "@/styles/globals.css";
 import { geistSans, geistMono } from "@/lib/fonts";
 import { metadata } from "@/app/metadata";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/ui/navbar";
-import { AppSidebar } from "@/components/ui/app-sidebar";
-import { SidebarTrigger, SidebarProvider } from "@/components/ui/sidebar";
+import Navbar from "@/components/ui/home/navbar";
+import { Toaster } from "sonner";
 
 export { metadata };
 
@@ -29,6 +28,7 @@ export default function RootLayout({
             <AppSidebar />
           </div> */}
             {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

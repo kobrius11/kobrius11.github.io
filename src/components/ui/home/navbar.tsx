@@ -11,7 +11,7 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "@/components/mode-toggle";
-import TypingEffect from "@/components/ui/typing-effect";
+import TypingEffect from "@/components/ui/home/typing-effect";
 import { Button } from "@/components/ui/button";
 
 const navItems = [

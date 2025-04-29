@@ -3,6 +3,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Github, X, Linkedin, Mail } from "lucide-react";
+import MessageForm from "@/components/ui/home/contact-form";
+import {
+  Card,
+  CardContent,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 const socials = [
   {
@@ -32,7 +39,7 @@ export default function Home() {
     <main className="h-screen w-full sm:p-20 scroll-smooth snap-y overflow-y-scroll snap-mandatory font-[family-name:var(--font-geist-sans)]">
       <section
         id="about"
-        className="snap-start h-screen py-12 md:py-24 lg:py-32"
+        className="snap-start h-screen py-8 md:py-24 lg:py-16"
       >
         <div className="container p-x-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -57,13 +64,14 @@ export default function Home() {
                 {socials.map((social) => {
                   const LinkIcon = social.icon;
                   return (
-                  <Link key={social.title} href={social.href} target="_blank">
-                    <Button variant="outline" size="icon">
-                      <LinkIcon className="h-4 w-4" />
-                      <span className="sr-only">{social.title}</span>
-                    </Button>
-                  </Link>
-                )})}
+                    <Link key={social.title} href={social.href} target="_blank">
+                      <Button variant="outline" size="icon">
+                        <LinkIcon className="h-4 w-4" />
+                        <span className="sr-only">{social.title}</span>
+                      </Button>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -71,7 +79,7 @@ export default function Home() {
       </section>
 
       <section
-        className="snap-start h-screen py-12 md:py-24 lg:py-32"
+        className="snap-start h-screen py-8 md:py-24 lg:py-16"
         id="projects"
       >
         <div className="text-center container p-x-4 md:px-6">
@@ -82,7 +90,7 @@ export default function Home() {
       </section>
 
       <section
-        className="snap-start h-screen py-12 md:py-24 lg:py-32"
+        className="snap-start h-screen py-8 md:py-24 lg:py-16"
         id="tech-stack"
       >
         <div className="text-center container p-x-4 md:px-6">
@@ -93,13 +101,20 @@ export default function Home() {
       </section>
 
       <section
-        className="snap-start h-screen py-12 md:py-24 lg:py-32"
+        className="snap-start h-screen py-8 md:py-24 lg:py-16"
         id="lets-connect"
       >
-        <div className="text-center container p-x-4 md:px-6">
-          <h2 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+        <div className="flex flex-col items-center text-center container p-x-4 md:px-6">
+          <h2 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none my-5">
             Let's Connect !
           </h2>
+          <Card className="w-md lg:w-xl">
+            <CardTitle>Leave me a message</CardTitle>
+            <CardDescription>And I'll reach out to you</CardDescription>
+            <CardContent>
+              <MessageForm />
+            </CardContent>
+          </Card>
         </div>
       </section>
     </main>
