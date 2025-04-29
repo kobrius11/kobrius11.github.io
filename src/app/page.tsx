@@ -4,6 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Github, X, Linkedin, Mail } from "lucide-react";
 
+const socials = [
+  {
+    title: "GitHub",
+    href: "https://github.com/kobrius11",
+    icon: Github,
+  },
+  {
+    title: "Linkedin",
+    href: "https://www.linkedin.com/in/software-developer-zygimantas-bickus/",
+    icon: Linkedin,
+  },
+  // {
+  //   title: "X",
+  //   href: "https://x.com/ZBickus",
+  //   icon: X,
+  // },
+  {
+    title: "Mail",
+    href: "mailto:zygimantas.bickus@gmail.com",
+    icon: Mail,
+  },
+];
+
 export default function Home() {
   return (
     <main className="h-screen w-full sm:p-20 scroll-smooth snap-y overflow-y-scroll snap-mandatory font-[family-name:var(--font-geist-sans)]">
@@ -14,8 +37,13 @@ export default function Home() {
         <div className="container p-x-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <Avatar className="h-64 w-64">
-              <AvatarImage src="https://avatars.githubusercontent.com/u/74487224?s=400&u=e6144de6bcbf5095208568b6a049c1efbaf3c6a1&v=4" alt="@kobrius11" />
-              <AvatarFallback><Skeleton className="w-64 h-64 rounded-full"/></AvatarFallback>
+              <AvatarImage
+                src="https://avatars.githubusercontent.com/u/74487224?s=400&u=e6144de6bcbf5095208568b6a049c1efbaf3c6a1&v=4"
+                alt="@kobrius11"
+              />
+              <AvatarFallback>
+                <Skeleton className="w-64 h-64 rounded-full" />
+              </AvatarFallback>
             </Avatar>
             <div className="space-y-2">
               <h1 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
@@ -26,33 +54,16 @@ export default function Home() {
                 on creating elegant solutions to complex problems.
               </p>
               <div className="space-x-1 mt-6">
-                <Link href="https://github.com/kobrius11" target="_blank">
-                  <Button variant="outline" size="icon">
-                    <Github className="h-4 w-4" />
-                    <span className="sr-only">GitHub</span>
-                  </Button>
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/in/software-developer-zygimantas-bickus/"
-                  target="_blank"
-                >
-                  <Button variant="outline" size="icon">
-                    <Linkedin className="h-4 w-4" />
-                    <span className="sr-only">LinkedIn</span>
-                  </Button>
-                </Link>
-                <Link href="https://x.com/ZBickus" target="_blank">
-                  <Button variant="outline" size="icon">
-                    <X className="h-4 w-4" />
-                    <span className="sr-only">Twitter</span>
-                  </Button>
-                </Link>
-                <Link href="mailto:zygimantas.bickus@gmail.com">
-                  <Button variant="outline" size="icon">
-                    <Mail className="h-4 w-4" />
-                    <span className="sr-only">Email</span>
-                  </Button>
-                </Link>
+                {socials.map((social) => {
+                  const LinkIcon = social.icon;
+                  return (
+                  <Link key={social.title} href={social.href} target="_blank">
+                    <Button variant="outline" size="icon">
+                      <LinkIcon className="h-4 w-4" />
+                      <span className="sr-only">{social.title}</span>
+                    </Button>
+                  </Link>
+                )})}
               </div>
             </div>
           </div>
@@ -91,7 +102,6 @@ export default function Home() {
           </h2>
         </div>
       </section>
-      
     </main>
   );
 }

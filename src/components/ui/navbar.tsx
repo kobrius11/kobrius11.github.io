@@ -15,9 +15,9 @@ import TypingEffect from "@/components/ui/typing-effect";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { href: "#about", label: "About Me", icon: <User /> },
-  { href: "#tech-stack", label: "Blog", icon: <BookOpen /> },
-  { href: "#projects", label: "Projects", icon: <CodeIcon /> },
+  { href: "/", label: "About Me", icon: <User /> },
+  { href: "/blog", label: "Blog", icon: <BookOpen /> },
+  // { href: "#projects", label: "Projects", icon: <CodeIcon /> },
 ];
 
 export default function Navbar() {
