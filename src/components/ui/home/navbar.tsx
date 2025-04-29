@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, User, CodeIcon, AlignJustifyIcon } from "lucide-react";
+import { BookOpen, User, AlignJustifyIcon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuList,

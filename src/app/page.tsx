@@ -2,7 +2,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Github, X, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import MessageForm from "@/components/ui/home/contact-form";
 import {
   Card,
@@ -106,11 +106,11 @@ export default function Home() {
       >
         <div className="flex flex-col items-center text-center container p-x-4 md:px-6">
           <h2 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none my-5">
-            Let's Connect !
+            Let&apos;s Connect !
           </h2>
           <Card className="w-md lg:w-xl">
             <CardTitle>Leave me a message</CardTitle>
-            <CardDescription>And I'll reach out to you</CardDescription>
+            <CardDescription>And I&apos;ll reach out to you</CardDescription>
             <CardContent>
               <MessageForm />
             </CardContent>
