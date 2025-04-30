@@ -47,6 +47,8 @@ async function fetchProjectTags() {
 }
 
 async function fetchFilteredProjectsByTags(tagSlug: string) {
+  const tagSlugParsed = tagSlug.split(",");
+  console.log(tagSlugParsed);
   try {
     const projects = await sql<projectTagsTable[]>`
       WITH projects_cte AS (
@@ -65,9 +67,9 @@ async function fetchFilteredProjectsByTags(tagSlug: string) {
         FROM public.projects_tags pt_many
         LEFT JOIN public.project_tags pt
           ON pt_many.tag_id = pt.id
-        WHERE pt.slug = ${tagSlug}
+        WHERE pt.slug = ANY(${tagSlugParsed})
       )
-        SELECT
+        SELECT DISTINCT
           p.*
         FROM projects_cte p
         INNER JOIN tags_cte t

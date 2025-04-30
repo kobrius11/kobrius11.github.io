@@ -10,46 +10,50 @@ export default function ProjectTagsClient({
   project_tags: projectTagsTable[];
 }) {
   const pathname = usePathname();
-  const searchPrams = useSearchParams();
-  const { replace } = useRouter();
-
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  
   const handleClick = (tagSlug: string) => {
-    const params = new URLSearchParams(searchPrams);
-
-    if (tagSlug) params.set("tag", tagSlug);
-    else params.delete("tag");
-
-    replace(`${pathname}?${params.toString()}`);
-  };
-
-  const handleClearClick = () => {
-    const params = new URLSearchParams(searchPrams);
-    params.delete("tag");
-    params.delete("query");
-
-    replace(`${pathname}?${params.toString()}`);
+    const params = new URLSearchParams(searchParams);
+    const current = params.get("tag");
+    const currentTags = current ? current.split(",") : [];
+  
+    const tagIndex = currentTags.indexOf(tagSlug);
+  
+    if (tagIndex > -1) {
+      // Remove tag
+      currentTags.splice(tagIndex, 1);
+    } else {
+      // Add tag
+      currentTags.push(tagSlug);
+    }
+  
+    if (currentTags.length > 0) {
+      params.set("tag", currentTags.join(","));
+    } else {
+      params.delete("tag");
+    }
+  
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="space-x-1 space-y-2">
-        {project_tags.map((tag) => (
-          <Button
-            onClick={() => handleClick(tag.slug)}
-            variant="secondary"
-            key={tag.name}
-          >
-            {tag.name}
-          </Button>
-        ))}
+        {project_tags.map((tag) => {
+          const activeTags = searchParams.get("tag")?.split(",") || [];
+          const isActive = activeTags.includes(tag.slug);
+          return (
+            <Button
+              onClick={() => handleClick(tag.slug)}
+              variant={isActive ? "default" : "secondary"}
+              key={tag.name}
+            >
+              {tag.name}
+            </Button>
+          );
+        })}
       </div>
-      <Button
-        className="w-24"
-        onClick={() => handleClearClick()}
-        variant='destructive'
-      >
-        clear
-      </Button>
     </div>
   );
 }
