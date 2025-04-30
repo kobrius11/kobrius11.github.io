@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, User, AlignJustifyIcon } from "lucide-react";
+import { BookOpen, User, AlignJustifyIcon, CodeIcon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 const navItems = [
   { href: "/", label: "About Me", icon: <User /> },
   { href: "/blog", label: "Blog", icon: <BookOpen /> },
-  // { href: "#projects", label: "Projects", icon: <CodeIcon /> },
+  { href: "/projects", label: "Projects", icon: <CodeIcon /> },
 ];
 
 export default function Navbar() {

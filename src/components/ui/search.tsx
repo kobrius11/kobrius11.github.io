@@ -1,12 +1,17 @@
 "use client";
 
-import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { Input } from "@/components/ui/input";
 
-export default function SearchBar({ placeholder, className = "" }: { placeholder: string, className?: string }) {
+export default function SearchBar({
+  placeholder,
+  className = "",
+}: {
+  placeholder: string;
+  className?: string;
+}) {
   const searchPrams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();

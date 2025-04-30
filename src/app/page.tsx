@@ -7,8 +7,6 @@ import MessageForm from "@/components/ui/home/contact-form";
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardFooter,
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
@@ -20,10 +18,7 @@ import {
   SectionDescription,
   SectionFooter,
 } from "@/components/ui/home/section";
-import { Suspense } from "react";
-import ProjectsCards from "@/components/ui/home/project-cards";
-import ProjectTags from "@/components/ui/home/project-tags";
-import SearchBar from "@/components/ui/search";
+import ProjectsCardsHome from "@/components/ui/projects/project-cards-home";
 
 const socials = [
   {
@@ -48,19 +43,7 @@ const socials = [
   },
 ];
 
-export default async function Home(props: {
-  searchParams?: Promise<{
-    query?: string;
-    tag?: string;
-  }>;
-}) {
-  const searchParams = await props.searchParams;
-  const query = searchParams?.query || '';
-  const tag = searchParams?.tag || '';
-  // console.log("tag:", tag);
-  // console.log("query:", query);
-
-
+export default async function Home() {
   return (
     <main className="h-screen w-full sm:p-20 scroll-smooth snap-y overflow-y-scroll snap-mandatory font-[family-name:var(--font-geist-sans)]">
       <Section id="about">
@@ -97,7 +80,7 @@ export default async function Home(props: {
         </SectionContent>
         <SectionFooter className="my-12 justify-center text-center">
           <SectionDescription>
-            <p>"Just do good things, and good things will happen to you"</p>
+            <p>&quot;Just do good things, and good things will happen to you&quot;</p>
             <p>- Sassy The Sasquatch</p>
           </SectionDescription>
         </SectionFooter>
@@ -111,12 +94,12 @@ export default async function Home(props: {
           </SectionContent>
         </SectionHeader>
         <SectionContent className="flex flex-col justify-center items-center space-y-5 my-5">
-          <SearchBar className="w-xl" placeholder="Search for projects..."/>
-          <ProjectTags  />
+          {/* <SearchBar className="w-xl" placeholder="Search for projects..." /> */}
+          {/* <ProjectTags /> */}
         </SectionContent>
 
         <SectionContent className="grid grid-cols-3 space-x-4">
-          <ProjectsCards query={query} tag={tag} />
+          <ProjectsCardsHome />
         </SectionContent>
       </Section>
 
