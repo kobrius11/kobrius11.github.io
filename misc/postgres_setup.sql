@@ -1,0 +1,56 @@
+CREATE TABLE IF NOT EXISTS public.messages(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  email VARCHAR(100) NOT NULL,
+  message TEXT NOT NULL,
+  date TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.blog_posts(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  title VARCHAR(255) NOT NULL,
+  body TEXT NOT NULL,
+  status VARCHAR(10) CHECK (status IN ('draft', 'published')) DEFAULT 'draft',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS public.blog_tags(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(64) NOT NULL UNIQUE,
+  slug VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS public.blog_posts_tags(
+  post_id BIGINT NOT NULL,
+  tag_id BIGINT NOT NULL,
+  PRIMARY KEY (post_id, tag_id),
+  FOREIGN KEY (post_id) REFERENCES public.blog_posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (tag_id) REFERENCES public.blog_tags(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS public.projects(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(255) NOT NULL UNIQUE,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  body TEXT NOT NULL,
+  status VARCHAR(10) CHECK (status IN ('abandoned', 'in_mind', 'in_progess', 'completed')) DEFAULT 'in_mind',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  ended_at TIMESTAMP,
+  picture_url TEXT
+);
+
+CREATE TABLE IF NOT EXISTS public.project_tags(
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(64) NOT NULL UNIQUE,
+  slug VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS public.projects_tags(
+  project_id BIGINT NOT NULL,
+  tag_id BIGINT NOT NULL,
+  PRIMARY KEY (project_id, tag_id),
+  FOREIGN KEY (project_id) REFERENCES public.projects(id) ON DELETE CASCADE,
+  FOREIGN KEY (tag_id) REFERENCES public.project_tags(id) ON DELETE CASCADE
+);

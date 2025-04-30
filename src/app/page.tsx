@@ -7,9 +7,23 @@ import MessageForm from "@/components/ui/home/contact-form";
 import {
   Card,
   CardContent,
+  CardHeader,
+  CardFooter,
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import {
+  Section,
+  SectionContent,
+  SectionHeader,
+  SectionTitle,
+  SectionDescription,
+  SectionFooter,
+} from "@/components/ui/home/section";
+import { Suspense } from "react";
+import ProjectsCards from "@/components/ui/home/project-cards";
+import ProjectTags from "@/components/ui/home/project-tags";
+import SearchBar from "@/components/ui/search";
 
 const socials = [
   {
@@ -34,15 +48,24 @@ const socials = [
   },
 ];
 
-export default function Home() {
+export default async function Home(props: {
+  searchParams?: Promise<{
+    query?: string;
+    tag?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || '';
+  const tag = searchParams?.tag || '';
+  // console.log("tag:", tag);
+  // console.log("query:", query);
+
+
   return (
     <main className="h-screen w-full sm:p-20 scroll-smooth snap-y overflow-y-scroll snap-mandatory font-[family-name:var(--font-geist-sans)]">
-      <section
-        id="about"
-        className="snap-start h-screen py-8 md:py-24 lg:py-16"
-      >
-        <div className="container p-x-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+      <Section id="about">
+        <SectionHeader className="text-center items-center justify-center">
+          <SectionContent className="flex flex-col items-center justify-center">
             <Avatar className="h-64 w-64">
               <AvatarImage
                 src="https://avatars.githubusercontent.com/u/74487224?s=400&u=e6144de6bcbf5095208568b6a049c1efbaf3c6a1&v=4"
@@ -52,71 +75,77 @@ export default function Home() {
                 <Skeleton className="w-64 h-64 rounded-full" />
               </AvatarFallback>
             </Avatar>
-            <div className="space-y-2">
-              <h1 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                Žygimantas Bičkus
-              </h1>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                Building digital experiences with modern technologies. Focused
-                on creating elegant solutions to complex problems.
-              </p>
-              <div className="space-x-1 mt-6">
-                {socials.map((social) => {
-                  const LinkIcon = social.icon;
-                  return (
-                    <Link key={social.title} href={social.href} target="_blank">
-                      <Button variant="outline" size="icon">
-                        <LinkIcon className="h-4 w-4" />
-                        <span className="sr-only">{social.title}</span>
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <SectionTitle>Žygimantas Bičkus</SectionTitle>
+            <SectionDescription className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+              Building digital experiences with modern technologies. Focused on
+              creating elegant solutions to complex problems.
+            </SectionDescription>
+          </SectionContent>
+        </SectionHeader>
+        <SectionContent className="flex justify-center space-x-1">
+          {socials.map((social) => {
+            const LinkIcon = social.icon;
+            return (
+              <Link key={social.title} href={social.href} target="_blank">
+                <Button variant="outline" size="icon">
+                  <LinkIcon className="h-4 w-4" />
+                  <span className="sr-only">{social.title}</span>
+                </Button>
+              </Link>
+            );
+          })}
+        </SectionContent>
+        <SectionFooter className="my-12 justify-center text-center">
+          <SectionDescription>
+            <p>"Just do good things, and good things will happen to you"</p>
+            <p>- Sassy The Sasquatch</p>
+          </SectionDescription>
+        </SectionFooter>
+      </Section>
 
-      <section
-        className="snap-start h-screen py-8 md:py-24 lg:py-16"
-        id="projects"
-      >
-        <div className="text-center container p-x-4 md:px-6">
-          <h2 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-            Projects
-          </h2>
-        </div>
-      </section>
+      <Section id="projects">
+        <SectionHeader className="text-center items-center justify-center">
+          <SectionContent>
+            <SectionTitle>Projects</SectionTitle>
+            <SectionDescription>My latest ventures</SectionDescription>
+          </SectionContent>
+        </SectionHeader>
+        <SectionContent className="flex flex-col justify-center items-center space-y-5 my-5">
+          <SearchBar className="w-xl" placeholder="Search for projects..."/>
+          <ProjectTags  />
+        </SectionContent>
 
-      <section
-        className="snap-start h-screen py-8 md:py-24 lg:py-16"
-        id="tech-stack"
-      >
-        <div className="text-center container p-x-4 md:px-6">
-          <h2 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-            Tech Stack
-          </h2>
-        </div>
-      </section>
+        <SectionContent className="grid grid-cols-3 space-x-4">
+          <ProjectsCards query={query} tag={tag} />
+        </SectionContent>
+      </Section>
 
-      <section
-        className="snap-start h-screen py-8 md:py-24 lg:py-16"
-        id="lets-connect"
-      >
-        <div className="flex flex-col items-center text-center container p-x-4 md:px-6">
-          <h2 className="text-3xl bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none my-5">
-            Let&apos;s Connect !
-          </h2>
-          <Card className="w-md lg:w-xl">
+      <Section id="tech-stack">
+        <SectionHeader className="text-center items-center justify-center">
+          <SectionContent>
+            <SectionTitle>Tech Stack</SectionTitle>
+            <SectionDescription>What I can and cannot do</SectionDescription>
+          </SectionContent>
+        </SectionHeader>
+      </Section>
+
+      <Section id="lets-connect">
+        <SectionHeader className="text-center items-center justify-center">
+          <SectionContent>
+            <SectionTitle>Let&apos;s Connect !</SectionTitle>
+            <SectionDescription>Let&apos;s become friends</SectionDescription>
+          </SectionContent>
+        </SectionHeader>
+        <SectionContent className="flex items-center justify-center">
+          <Card className="text-center w-md lg:w-xl">
             <CardTitle>Leave me a message</CardTitle>
             <CardDescription>And I&apos;ll reach out to you</CardDescription>
             <CardContent>
               <MessageForm />
             </CardContent>
           </Card>
-        </div>
-      </section>
+        </SectionContent>
+      </Section>
     </main>
   );
 }

@@ -21,7 +21,6 @@ import { useForm } from "react-hook-form";
 import { State } from "@/lib/contact-form/actions";
 
 const messageFormSchema = z.object({
-  // id: z.string(),
   email: z
     .string()
     .min(10, { message: "This field has to be filled." })
@@ -31,7 +30,6 @@ const messageFormSchema = z.object({
       invalid_type_error: "Please enter a message ...",
     })
     .min(10, { message: "This field has to be filled." }),
-  // date: z.string(),
 });
 
 export default function MessageForm() {

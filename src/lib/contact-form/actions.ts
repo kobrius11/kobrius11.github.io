@@ -3,8 +3,7 @@
 import { z } from "zod";
 import postgres from "postgres";
 
-const FormSchema = z.object({
-  id: z.string(),
+const messageFormSchema = z.object({
   email: z
     .string()
     .min(10, { message: "This field has to be filled." })
@@ -14,7 +13,6 @@ const FormSchema = z.object({
       invalid_type_error: "Please enter a message ...",
     })
     .min(10, { message: "This field has to be filled." }),
-  date: z.string(),
 });
 
 export type State = {
@@ -26,7 +24,6 @@ export type State = {
   success?: boolean;
 };
 
-const messageFormSchema = FormSchema.omit({ id: true, date: true });
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function createMessage(prevState: State, formData: FormData) {
@@ -42,7 +39,7 @@ export async function createMessage(prevState: State, formData: FormData) {
     };
   }
   const { email, message } = validatedFields.data;
-  const date = new Date().toISOString().split("T")[0];
+  const date = new Date().toISOString();
 
   try {
     await sql`
