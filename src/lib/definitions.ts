@@ -6,6 +6,7 @@ interface projectsTable {
   status: 'in_mind' | 'in_progress' | 'abandoned' | 'completed';
   created_at: string;
   updated_at: string;
+  project_url: string;
   picture_url: string;
   project_tags: string[];
 }

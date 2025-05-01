@@ -18,7 +18,9 @@ import {
   SectionDescription,
   SectionFooter,
 } from "@/components/ui/home/section";
-import ProjectsCardsHome from "@/components/ui/projects/project-cards-home";
+import ProjectsCardsHome from "@/components/ui/project-card";
+import { ProjectSectionContent } from "@/components/ui/home/projects-section";
+import { fetchProjectsForHome } from "@/lib/data";
 
 const socials = [
   {
@@ -44,8 +46,10 @@ const socials = [
 ];
 
 export default async function Home() {
+  const projects = await fetchProjectsForHome();
+
   return (
-    <main className="h-screen w-full sm:p-20 scroll-smooth snap-y overflow-y-scroll snap-mandatory font-[family-name:var(--font-geist-sans)]">
+    <main className="h-screen w-full snap-y overflow-y-scroll snap-mandatory sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <Section id="about">
         <SectionHeader className="text-center items-center justify-center">
           <SectionContent className="flex flex-col items-center justify-center">
@@ -80,7 +84,10 @@ export default async function Home() {
         </SectionContent>
         <SectionFooter className="my-12 justify-center text-center">
           <SectionDescription>
-            <p>&quot;Just do good things, and good things will happen to you&quot;</p>
+            <p>
+              &quot;Just do good things, and good things will happen to
+              you&quot;
+            </p>
             <p>- Sassy The Sasquatch</p>
           </SectionDescription>
         </SectionFooter>
@@ -93,14 +100,12 @@ export default async function Home() {
             <SectionDescription>My latest ventures</SectionDescription>
           </SectionContent>
         </SectionHeader>
-        <SectionContent className="flex flex-col justify-center items-center space-y-5 my-5">
-          {/* <SearchBar className="w-xl" placeholder="Search for projects..." /> */}
-          {/* <ProjectTags /> */}
-        </SectionContent>
+        {/* <SectionContent className="flex flex-col justify-center items-center space-y-5 my-5">
+          <SearchBar className="w-xl" placeholder="Search for projects..." />
+          <ProjectTags />
+        </SectionContent> */}
 
-        <SectionContent className="grid grid-cols-3 space-x-4">
-          <ProjectsCardsHome />
-        </SectionContent>
+        <ProjectSectionContent projects={projects} className="my-10" />
       </Section>
 
       <Section id="tech-stack">

@@ -1,35 +1,23 @@
 import "@/styles/globals.css";
 import { geistSans, geistMono } from "@/lib/fonts";
 import { metadata } from "@/app/metadata";
-import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/ui/home/navbar";
-import { Toaster } from "sonner";
+import { Providers } from "@/app/providers";
 
 export { metadata };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers>
           <Navbar />
-          {/* <div className="h-full flex flex-col lg:flex-row lg:overflow-hidden">
-            <AppSidebar />
-          </div> */}
-            {children}
-          <Toaster />
-        </ThemeProvider>
+          {children}
+        </Providers>
       </body>
     </html>
   );

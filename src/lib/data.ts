@@ -7,7 +7,15 @@ async function fetchProjectsForHome() {
   try {
     const projects = await sql<projectsTable[]>`
         SELECT 
-          p.*,
+          p.id,
+          p.name,
+          p.slug,
+          p.body,
+          p.status,
+          p.created_at,
+          p.updated_at,
+          p.picture_url,
+          p.project_url,
           ARRAY_AGG(pt.name) AS project_tags
         FROM public.projects p 
         LEFT JOIN public.projects_tags pt_many
@@ -32,7 +40,15 @@ async function fetchProjects() {
   try {
     const projects = await sql<projectsTable[]>`
         SELECT 
-          p.*,
+          p.id,
+          p.name,
+          p.slug,
+          p.body,
+          p.status,
+          p.created_at,
+          p.updated_at,
+          p.picture_url,
+          p.project_url,
           ARRAY_AGG(pt.name) AS project_tags
         FROM public.projects p 
         LEFT JOIN public.projects_tags pt_many
@@ -85,6 +101,7 @@ async function fetchFilteredProjectsByTags(tagSlug: string, page: number = 0) {
           p.created_at,
           p.updated_at,
           p.picture_url,
+          p.project_url,
           ARRAY_AGG(pt.name) AS project_tags,
           STRING_AGG(pt.slug, ',' ORDER BY pt.slug) AS project_tags_str
         FROM public.projects p 
@@ -110,6 +127,7 @@ async function fetchFilteredProjectsByTags(tagSlug: string, page: number = 0) {
           p.created_at,
           p.updated_at,
           p.picture_url,
+          p.project_url,
           p.project_tags
         FROM projects_cte p
         INNER JOIN tags_cte t
