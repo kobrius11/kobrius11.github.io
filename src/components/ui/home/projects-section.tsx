@@ -7,14 +7,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
 import { useEffect } from "react";
 import { projectsTable } from "@/lib/definitions";
 import ProjectCard from "@/components/ui/project-card";
-
 
 interface SectionContentProps {
   projects: projectsTable[];
@@ -47,12 +44,11 @@ export function ProjectSectionContent({
     return (
       <Carousel setApi={setApi} className={cn("", className)}>
         <CarouselContent className="mx-5">
-          {projects.map( (project, idx) => (
-          <CarouselItem key={idx}>
+          {projects.map((project, idx) => (
+            <CarouselItem key={idx}>
               <ProjectCard project={project} className="" />
-          </CarouselItem>
+            </CarouselItem>
           ))}
-
         </CarouselContent>
       </Carousel>
     );
@@ -61,9 +57,9 @@ export function ProjectSectionContent({
   // Desktop view with grid
   return (
     <div className={cn("grid grid-cols-3 gap-4", className)}>
-          {projects.map( (project, idx) => (
-              <ProjectCard key={idx} project={project} className="" />
-          ))}
+      {projects.map((project, idx) => (
+        <ProjectCard key={idx} project={project} className="" />
+      ))}
     </div>
   );
 }

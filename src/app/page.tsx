@@ -18,7 +18,6 @@ import {
   SectionDescription,
   SectionFooter,
 } from "@/components/ui/home/section";
-import ProjectsCardsHome from "@/components/ui/project-card";
 import { ProjectSectionContent } from "@/components/ui/home/projects-section";
 import { fetchProjectsForHome } from "@/lib/data";
 
