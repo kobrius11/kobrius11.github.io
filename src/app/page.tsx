@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/home/section";
 import { ProjectSectionContent } from "@/components/ui/home/projects-section";
 import { fetchProjectsForHome } from "@/lib/data";
+import { TechSectionContent } from "@/components/ui/home/tech-section";
 
 const socials = [
   {
@@ -41,6 +42,29 @@ const socials = [
     title: "Mail",
     href: "mailto:zygimantas.bickus@gmail.com",
     icon: Mail,
+  },
+];
+
+const techStack = [
+  {
+    title: "Cloud",
+    stack: ['AWS', 'Vercel']
+  },
+  {
+    title: "Databases",
+    stack: ['PostgreSQL', 'MongoDB']
+  },
+  {
+    title: "Backend",
+    stack: ['Django', 'FastAPI', 'nginx']
+  },
+  {
+    title: "Frontend",
+    stack: ['React', 'NextJS']
+  },
+  {
+    title: "Data Engineering/Analytics",
+    stack: ['Spark', 'Pandas', 'SQL', 'PowerBI']
   },
 ];
 
@@ -108,12 +132,16 @@ export default async function Home() {
       </Section>
 
       <Section id="tech-stack">
-        <SectionHeader className="text-center items-center justify-center">
+        <SectionHeader className="text-center">
           <SectionContent>
             <SectionTitle>Tech Stack</SectionTitle>
             <SectionDescription>What I can and cannot do</SectionDescription>
           </SectionContent>
         </SectionHeader>
+        <SectionContent className="flex items-center justify-center flex-col">
+            <TechSectionContent techStack={techStack}/>
+        </SectionContent>
+
       </Section>
 
       <Section id="lets-connect">

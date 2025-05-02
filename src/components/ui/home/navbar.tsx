@@ -16,9 +16,11 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/", label: "About Me", icon: <User /> },
-  { href: "/blog", label: "Blog", icon: <BookOpen /> },
-  { href: "/projects", label: "Projects", icon: <CodeIcon /> },
+  // { href: "/blog", label: "Blog", icon: <BookOpen /> },
+  // { href: "/projects", label: "Projects", icon: <CodeIcon /> },
 ];
+
+const resumeLink = "assets/resume-2024-05-02.pdf";
 
 export default function Navbar() {
   return (
@@ -27,7 +29,11 @@ export default function Navbar() {
         <div className="flex items-center px-5 space-x-4">
           <div className="w-30">
             <Link href="/">
-            <TypingEffect text="@kobrius11" speed={170} className=" text-xl bold tracking-tighter text-nowrap" />
+              <TypingEffect
+                text="@kobrius11"
+                speed={170}
+                className=" text-xl bold tracking-tighter text-nowrap"
+              />
             </Link>
           </div>
           <DesktopNavigation />
@@ -35,9 +41,14 @@ export default function Navbar() {
         </div>
         <div className="flex justify-center items-center space-x-4 my-1">
           <ModeToggle />
-          <Button variant="outline">
-            Resume
-          </Button>
+          <Link
+            href={resumeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+          >
+            <Button variant="outline">Resume</Button>
+          </Link>
         </div>
       </div>
     </header>
