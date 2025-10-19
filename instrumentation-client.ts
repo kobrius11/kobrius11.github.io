@@ -1,38 +1,49 @@
-
-//
-// console.log("Global Analytics initialized!");
-//
-// function reportError(error: Error) {
-//   console.log("Error event!:", error.message);
-// };
-//
-// window.addEventListener('error', (event) => {
-//   reportError(event.error);
-//   console.log("from global event listener: ", event.error.message);
-// });
-
-// instrumentation-client.ts
-
+// Global message
 console.log("Global Analytics initialized!");
 
-function reportError(error: Error) {
-  console.log("Error event:", error.message);
+export type MessageType = "info" | "warn" | "error";
+
+export interface Message {
+  timestamp: number;
+  text: string;
+  type: MessageType;
 }
 
-// Wait for the window to be ready
-if (typeof window !== 'undefined') {
-  window.addEventListener('error', (event) => {
-    if (event.error) {
-      reportError(event.error);
-      console.log("from global event listener:", event.error.message);
-    } else {
-      console.log("Unhandled error:", event.message);
-    }
-  });
+export class Log implements Message {
+  timestamp: number;
+  text: string;
+  type: MessageType;
 
-  // Test after listener is registered
-  setTimeout(() => {
-    throw new Error("Test event!");
-  }, 0);
+  private constructor(text: string, type: MessageType) {
+    this.timestamp = Date.now();
+    this.text = text;
+    this.type = type;
+  }
+
+  // Should report message to DB
+  report() {}
+
+  // Should Format message for stdout represantation
+  format() {}
+
+  // Factory methods
+  static info(text: string) {
+    return new Log(text, 'info');
+  }
+
+  static warn(text: string) {
+    return new Log(text, 'warn');
+  }
+
+  static error(text: string) {
+    return new Log(text, 'error');
+  }
 }
+
+// Error event listener
+// Should Build a message and report it
+window.addEventListener('error', (event) => {
+  const message = Log.error(event.message)
+});
+
 
