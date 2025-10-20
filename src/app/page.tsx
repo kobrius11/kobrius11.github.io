@@ -19,7 +19,7 @@ import {
   SectionFooter,
 } from "@/components/ui/home/section";
 import { ProjectSectionContent } from "@/components/ui/home/projects-section";
-import { fetchProjectsForHome } from "@/lib/data";
+import { fetchProjectsForHome } from "@/lib/data/data";
 import { TechSectionContent } from "@/components/ui/home/tech-section";
 
 const socials = [

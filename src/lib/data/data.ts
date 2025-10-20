@@ -1,7 +1,8 @@
-import postgres from "postgres";
+import { PostgresClient } from '@/lib/data/postgres'
 import { projectsTable, projectTagsTable } from "@/lib/definitions";
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
+const sql = PostgresClient.get(process.env.POSTGRES_URL!).sql()
+
 
 async function fetchProjectsForHome() {
   try {
